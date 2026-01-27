@@ -16,7 +16,7 @@ import {
   ModalController
 } from '@ionic/angular/standalone';
 import { closeOutline } from 'ionicons/icons';
-import { Categoria } from '../../services/categoria.service';
+import { Categoria } from '../../core/models/categoria.model';
 import { addIcons } from 'ionicons';
 
 @Component({

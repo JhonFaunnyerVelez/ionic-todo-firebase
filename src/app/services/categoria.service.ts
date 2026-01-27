@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc, Firestore, onSnapshot, Unsubscribe } from 'firebase/firestore';
+import { collection, doc, addDoc, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
 import { firestore } from '../config/firebase.config';
 import { Observable } from 'rxjs';
-
-export interface Categoria {
-  id: string;
-  nombre: string;
-  descripcion: string;
-}
+import { Categoria } from '../core/models/categoria.model';
 
 @Injectable({
   providedIn: 'root'

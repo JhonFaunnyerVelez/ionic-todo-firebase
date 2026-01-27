@@ -14,32 +14,34 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="ion-padding">
-    <ion-button expand="block" fill="clear">
-      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-      Nueva Tarea
-    </ion-button>
-
+  @if (isLoading) {
+    <ion-spinner></ion-spinner>
+  } @else {
     <ion-list>
       @for (tarea of tareas; track tarea.id) {
-        <ion-item-sliding>
-          <ion-item>
-            <ion-checkbox [(ngModel)]="tarea.completada" (ionChange)="toggleTarea(tarea)"></ion-checkbox>
-            <ion-label>
-              <h2 [class.completed]="tarea.completada">{{ tarea.titulo }}</h2>
-              <p>{{ tarea.categoria }}</p>
-            </ion-label>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option color="primary">
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-item-option>
-            <ion-item-option color="danger">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
+        <ion-item (click)="presentActionSheet(tarea)">
+          <ion-avatar slot="start">
+            @if (tarea.completa) {
+              <ion-icon name="checkmark-circle" style="color: var(--ion-color-success);"></ion-icon>
+            } @else {
+              <ion-icon name="ellipse" style="color: var(--ion-color-medium);"></ion-icon>
+            }
+          </ion-avatar>
+          <ion-label>
+            <h2 [class.completed]="tarea.completa">{{ tarea.descripcion }}</h2>
+            <p>{{ getNombreCategoria(tarea.keyCategoriaID) }}</p>
+          </ion-label>
+          <ion-toggle slot="end" [ngModel]="tarea.completa" (ionChange)="toggleTarea(tarea)" (click)="$event.stopPropagation()"></ion-toggle>
+        </ion-item>
+      } @empty {
+        <p>No hay tareas registradas</p>
       }
     </ion-list>
-  </div>
+  }
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openTareaForm()">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

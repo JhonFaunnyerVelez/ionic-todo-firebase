@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ tarea.id ? 'Editar Tarea' : 'Nueva Tarea' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onSave()">
+    <ion-item>
+      <ion-label position="stacked">Descripción de la tarea</ion-label>
+      <ion-textarea 
+        [(ngModel)]="descripcion" 
+        name="descripcion" 
+        placeholder="Describe la tarea a realizar..."
+        rows="4"
+        required>
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Categoría</ion-label>
+      <ion-select 
+        [(ngModel)]="keyCategoriaID" 
+        name="keyCategoriaID" 
+        placeholder="Selecciona una categoría"
+        required>
+        @for (categoria of categorias; track categoria.id) {
+          <ion-select-option [value]="categoria.id">
+            {{ categoria.nombre }}
+          </ion-select-option>
+        }
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-checkbox 
+        [(ngModel)]="completa" 
+        name="completa">
+        Completada
+      </ion-checkbox>
+    </ion-item>
+
+    <div class="button-group">
+      <ion-button 
+        expand="block" 
+        type="submit" 
+        [disabled]="!descripcion.trim() || !keyCategoriaID">
+        {{ tarea.id ? 'Actualizar' : 'Crear' }} Tarea
+      </ion-button>
+      
+      <ion-button 
+        expand="block" 
+        fill="clear" 
+        type="button"
+        (click)="onCancel()">
+        Cancelar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
