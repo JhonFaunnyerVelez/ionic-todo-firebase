@@ -8,16 +8,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tareas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  
   @if (isLoading) {
     <ion-spinner></ion-spinner>
   } @else {
-    <!-- Contador de tareas -->
     <ion-card>
       <ion-card-content>
         <div class="stats-container">
@@ -34,6 +28,18 @@
             <p>Total</p>
           </div>
         </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Buscador de tareas -->
+    <ion-card>
+      <ion-card-content>
+        <ion-searchbar 
+          placeholder="Buscar tareas..." 
+          [(ngModel)]="terminoBusqueda"
+          (ionInput)="filtrarTareas()"
+          debounce="300">
+        </ion-searchbar>
       </ion-card-content>
     </ion-card>
 

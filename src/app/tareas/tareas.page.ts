@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon, IonItemSliding, IonItemOptions, IonItemOption, IonButtons, IonMenuButton, IonFab, IonFabButton, IonSpinner, ModalController, ActionSheetController, IonAvatar, IonToggle, AlertController, IonInfiniteScroll, IonInfiniteScrollContent, IonCard, IonCardContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon, IonItemSliding, IonItemOptions, IonItemOption, IonButtons, IonMenuButton, IonFab, IonFabButton, IonSpinner, ModalController, ActionSheetController, IonAvatar, IonToggle, AlertController, IonInfiniteScroll, IonInfiniteScrollContent, IonCard, IonCardContent, IonSearchbar } from '@ionic/angular/standalone';
 import { addCircle, trash, create, closeOutline, pencil, checkmark, chevronForward, checkmarkCircle, ellipse } from 'ionicons/icons';
 import { TareaService } from '../services/tarea.service';
 import { CategoriaService } from '../services/categoria.service';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './tareas.page.html',
   styleUrls: ['./tareas.page.scss'],
   standalone: true,
-  imports: [FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon, IonItemSliding, IonItemOptions, IonItemOption, IonButtons, IonMenuButton, IonFab, IonFabButton, IonSpinner, IonAvatar, IonToggle, IonInfiniteScroll, IonInfiniteScrollContent, IonCard, IonCardContent]
+  imports: [FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon, IonItemSliding, IonItemOptions, IonItemOption, IonButtons, IonMenuButton, IonFab, IonFabButton, IonSpinner, IonAvatar, IonToggle, IonInfiniteScroll, IonInfiniteScrollContent, IonCard, IonCardContent, IonSearchbar]
 })
 export class TareasPage implements OnInit, OnDestroy {
   tareas: Tarea[] = []; 
@@ -28,6 +28,10 @@ export class TareasPage implements OnInit, OnDestroy {
   tareasMostradas: Tarea[] = [];
   limiteInicial = 20;
   limiteActual = 20;
+
+  // Búsqueda properties
+  terminoBusqueda: string = '';
+  tareasFiltradas: Tarea[] = [];
 
   /**
    * Inyeccion de servicios
@@ -87,6 +91,9 @@ export class TareasPage implements OnInit, OnDestroy {
           categoria: this.categorias.find(cat => cat.id === tarea.keyCategoriaID)
         }));
         
+        // Inicializar tareas filtradas
+        this.tareasFiltradas = [...this.tareas];
+        
         // Actualizar tareas mostradas con límite
         this.actualizarTareasMostradas();
         this.isLoading = false;
@@ -98,11 +105,27 @@ export class TareasPage implements OnInit, OnDestroy {
     });
   }
 
-  /** 
+  /**
+   * Metodo para filtrar tareas por nombre
+   */
+  filtrarTareas() {
+    if (!this.terminoBusqueda.trim()) {
+      this.tareasFiltradas = [...this.tareas];
+    } else {
+      const termino = this.terminoBusqueda.toLowerCase().trim();
+      this.tareasFiltradas = this.tareas.filter(tarea => 
+        tarea.descripcion.toLowerCase().includes(termino)
+      );
+    }
+    this.actualizarTareasMostradas();
+  }
+
+  /**
    * Metodo para actualizar las tareas mostradas
    */
   actualizarTareasMostradas() {
-    this.tareasMostradas = this.tareas.slice(0, this.limiteActual);
+    const tareasBase = this.terminoBusqueda.trim() ? this.tareasFiltradas : this.tareas;
+    this.tareasMostradas = tareasBase.slice(0, this.limiteActual);
   }
 
   /**

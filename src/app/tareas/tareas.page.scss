@@ -14,6 +14,31 @@ ion-header {
     ion-icon {
       color: white;
     }
+    
+    /* Fix for iOS menu button color - more aggressive */
+    ion-menu-button {
+      --color: white !important;
+      --background: transparent !important;
+      --background-focused: transparent !important;
+      --background-activated: transparent !important;
+      color: white !important;
+    }
+    
+    ion-buttons {
+      --color: white !important;
+    }
+    
+    /* iOS specific overrides */
+    &.ios {
+      ion-menu-button {
+        --ion-color-base: white !important;
+        color: white !important;
+      }
+      
+      ion-buttons {
+        --ion-color-base: white !important;
+      }
+    }
   }
 }
 
@@ -37,12 +62,12 @@ ion-spinner {
 }
 
 ion-card {
-  margin: 16px;
+  margin: 8px; /* Reducido de 16px */
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   
   ion-card-content {
-    padding: 16px;
+    padding: 12px; /* Reducido de 16px */
   }
 }
 
@@ -51,21 +76,22 @@ ion-card {
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  padding: 12px; /* Reducido de 16px */
   
   .stat-item {
     flex: 1;
     
     h2 {
-      font-size: 2rem;
+      font-size: 1.5rem; /* Reducido de 2rem */
       font-weight: bold;
       color: var(--ion-color-primary);
       margin: 0;
     }
     
     p {
-      font-size: 0.9rem;
+      font-size: 0.8rem; /* Reducido de 0.9rem */
       color: var(--ion-color-medium);
-      margin: 4px 0 0 0;
+      margin: 2px 0 0 0; /* Reducido de 4px */
     }
   }
 }
@@ -117,4 +143,46 @@ ion-list {
 .completed {
   text-decoration: line-through;
   opacity: 0.6;
+}
+
+/* Estilos para buscador más pequeño */
+ion-searchbar {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --placeholder-color: var(--ion-color-medium);
+  --placeholder-opacity: 0.7;
+  --icon-color: var(--ion-color-primary);
+  --border-radius: 8px;
+  --box-shadow: none;
+  --background: var(--ion-color-light);
+  height: 40px; /* Reducido altura */
+  font-size: 14px;
+}
+
+ion-searchbar .searchbar-input-container {
+  min-height: 40px; /* Reducido altura mínima */
+}
+
+ion-searchbar .searchbar-input {
+  font-size: 14px;
+  padding: 0 8px;
+}
+
+/* Global iOS menu button fix */
+@media (max-width: 768px) {
+  ion-header ion-toolbar ion-menu-button,
+  ion-header ion-toolbar ion-buttons ion-menu-button {
+    --ion-color-base: white !important;
+    color: white !important;
+    background: transparent !important;
+    -webkit-text-fill-color: white !important;
+  }
+  
+  /* Force iOS specific styles */
+  .ios ion-header ion-toolbar ion-menu-button,
+  .ios ion-header ion-toolbar ion-buttons ion-menu-button {
+    color: white !important;
+    --color: white !important;
+    --ion-color-base: white !important;
+  }
 }
