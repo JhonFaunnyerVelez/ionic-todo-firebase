@@ -36,6 +36,40 @@ ion-spinner {
   color: var(--ion-color-primary);
 }
 
+ion-card {
+  margin: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  ion-card-content {
+    padding: 16px;
+  }
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  
+  .stat-item {
+    flex: 1;
+    
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--ion-color-primary);
+      margin: 0;
+    }
+    
+    p {
+      font-size: 0.9rem;
+      color: var(--ion-color-medium);
+      margin: 4px 0 0 0;
+    }
+  }
+}
+
 ion-list {
   ion-item {
     --background: white;

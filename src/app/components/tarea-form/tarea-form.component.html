@@ -39,11 +39,11 @@
 
     <ion-item>
       <ion-label>Estado</ion-label>
-      <ion-checkbox 
+      <ion-toggle 
         [(ngModel)]="completa" 
         name="completa">
-        Completada
-      </ion-checkbox>
+        {{ completa ? 'Completada' : 'Pendiente' }}
+      </ion-toggle>
     </ion-item>
 
     <div class="button-group">

@@ -17,8 +17,28 @@
   @if (isLoading) {
     <ion-spinner></ion-spinner>
   } @else {
+    <!-- Contador de tareas -->
+    <ion-card>
+      <ion-card-content>
+        <div class="stats-container">
+          <div class="stat-item">
+            <h2>{{ tareasPendientes }}</h2>
+            <p>Pendientes</p>
+          </div>
+          <div class="stat-item">
+            <h2>{{ tareasCompletadas }}</h2>
+            <p>Completadas</p>
+          </div>
+          <div class="stat-item">
+            <h2>{{ tareas.length }}</h2>
+            <p>Total</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
     <ion-list>
-      @for (tarea of tareas; track tarea.id) {
+      @for (tarea of tareasMostradas; track tarea.id) {
         <ion-item (click)="presentActionSheet(tarea)">
           <ion-avatar slot="start">
             @if (tarea.completa) {
@@ -30,6 +50,7 @@
           <ion-label>
             <h2 [class.completed]="tarea.completa">{{ tarea.descripcion }}</h2>
             <p>{{ getNombreCategoria(tarea.keyCategoriaID) }}</p>
+            <p>{{ formatDate(tarea.fechaCreacion) }}</p>
           </ion-label>
           <ion-toggle slot="end" [ngModel]="tarea.completa" (ionChange)="toggleTarea(tarea)" (click)="$event.stopPropagation()"></ion-toggle>
         </ion-item>
@@ -37,6 +58,11 @@
         <p>No hay tareas registradas</p>
       }
     </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   }
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
