@@ -5,12 +5,18 @@ Aplicación móvil híbrida para gestión de tareas y categorías con Firebase, 
 ## Características
 
 - ✅ CRUD completo de categorías en tiempo real
+- ✅ CRUD completo de tareas con búsqueda y filtrado
 - ✅ Base de datos Firestore con actualizaciones automáticas
 - ✅ Interfaz moderna con Ionic Framework
 - ✅ Diseño responsive y optimizado para móviles
-- ✅ Action sheets para gestión de categorías
+- ✅ Action sheets para gestión de categorías y tareas
 - ✅ Formularios modales con validación
 - ✅ Iconos optimizados para ionicons v7
+- ✅ Buscador de tareas con filtrado en tiempo real
+- ✅ Infinite scroll para mejor rendimiento
+- ✅ Componentes reutilizables y modulares
+- ✅ Contador de tareas dinámico
+- ✅ Generador automático de tareas de prueba
 
 ## Tecnologías
 
@@ -80,16 +86,25 @@ firebase deploy
 src/
 ├── app/
 │   ├── components/
-│   │   └── categoria-form/          # Formulario modal de categorías
+│   │   ├── categoria-form/              # Formulario modal de categorías
+│   │   ├── tarea-form/                  # Formulario modal de tareas
+│   │   └── task-counter/               # Componente contador de tareas
 │   ├── services/
-│   │   └── categoria.service.ts     # Servicio Firebase para categorías
+│   │   ├── categoria.service.ts        # Servicio Firebase para categorías
+│   │   └── tarea.service.ts             # Servicio Firebase para tareas
 │   ├── pages/
-│   │   ├── categorias/              # Página de gestión de categorías
-│   │   └── tareas/                 # Página de gestión de tareas
-│   ├── config/
-│   │   └── firebase.config.ts       # Configuración de Firebase
-│   └── app.routes.ts                # Rutas de la aplicación
-└── ...
+│   │   ├── categorias/                 # Página de gestión de categorías
+│   │   └── tareas/                     # Página de gestión de tareas
+│   ├── core/
+│   │   ├── models/                      # Modelos de datos TypeScript
+│   │   │   ├── categoria.model.ts      # Interfaz de categoría
+│   │   │   └── tarea.model.ts          # Interfaz de tarea
+│   ├── app.component.ts                 # Componente principal con menú
+│   ├── app.routes.ts                    # Rutas de la aplicación
+│   └── main.ts                         # Punto de entrada con providers Firebase
+├── assets/                              # Recursos estáticos
+├── environments/                       # Configuración de entornos
+└── www/                               # Build de producción
 ```
 
 ## Funcionalidades Principales
@@ -100,11 +115,23 @@ src/
 - **Actualizar**: Click en categoría → Action Sheet → Editar
 - **Eliminar**: Click en categoría → Action Sheet → Eliminar
 
+### Gestión de Tareas
+- **Crear**: Botón flotante (+) para agregar nuevas tareas
+- **Leer**: Lista con infinite scroll y búsqueda en tiempo real
+- **Actualizar**: Click en tarea → Action Sheet → Editar
+- **Eliminar**: Click en tarea → Action Sheet → Eliminar
+- **Buscar**: Campo de búsqueda con filtrado por nombre
+- **Contador**: Componente dinámico con estadísticas (pendientes/completadas/total)
+- **Toggle**: Cambio rápido de estado (pendiente ↔ completada)
+
 ### Características Técnicas
 - **Real-time Updates**: Los cambios se reflejan instantáneamente
 - **Offline Support**: Firestore maneja desconexiones automáticamente
 - **Type Safety**: TypeScript con interfaces definidas
 - **Standalone Components**: Arquitectura moderna de Angular
+- **Responsive Design**: Optimizado para móviles y escritorio
+- **Component-Based**: Componentes reutilizables y modulares
+- **Performance**: Infinite scroll para manejo eficiente de grandes volúmenes de datos
 
 ## Variables de Entorno
 
