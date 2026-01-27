@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ categoria.id ? 'Editar Categoría' : 'Nueva Categoría' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onSave()">
+    <ion-item>
+      <ion-label position="stacked">Nombre de la categoría</ion-label>
+      <ion-input 
+        type="text" 
+        [(ngModel)]="nombre" 
+        name="nombre" 
+        placeholder="Ej: Trabajo, Personal, Estudio"
+        required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea 
+        [(ngModel)]="descripcion" 
+        name="descripcion" 
+        placeholder="Describe brevemente esta categoría..."
+        rows="4">
+      </ion-textarea>
+    </ion-item>
+
+    <div class="button-group">
+      <ion-button 
+        expand="block" 
+        type="submit" 
+        [disabled]="!nombre.trim()">
+        {{ categoria.id ? 'Actualizar' : 'Crear' }} Categoría
+      </ion-button>
+      
+      <ion-button 
+        expand="block" 
+        fill="clear" 
+        type="button"
+        (click)="onCancel()">
+        Cancelar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
