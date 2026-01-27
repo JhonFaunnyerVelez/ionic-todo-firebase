@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Categorías</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <ion-button expand="block" fill="clear">
+      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+      Nueva Categoría
+    </ion-button>
+
+    @for (categoria of categorias; track categoria.id) {
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ categoria.nombre }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ categoria.descripcion }}
+        </ion-card-content>
+      </ion-card>
+    }
+  </div>
+</ion-content>
