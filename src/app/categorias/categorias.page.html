@@ -14,21 +14,27 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="ion-padding">
-    <ion-button expand="block" fill="clear">
-      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-      Nueva Categoría
-    </ion-button>
-
-    @for (categoria of categorias; track categoria.id) {
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>{{ categoria.nombre }}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          {{ categoria.descripcion }}
-        </ion-card-content>
-      </ion-card>
+    @if (isLoading) {
+      <ion-spinner></ion-spinner>
+    } @else {
+      <ion-list>
+        @for (categoria of categorias; track categoria.id) {
+          <ion-item (click)="presentActionSheet(categoria)">
+            <ion-label>
+              <h2>{{ categoria.nombre }}</h2>
+              <p>{{ categoria.descripcion }}</p>
+            </ion-label>
+            <ion-icon slot="end" name="chevron-forward"></ion-icon>
+          </ion-item>
+        } @empty {
+          <p>No hay categorías registradas</p>
+        }
+      </ion-list>
     }
-  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCategoriaForm()">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
