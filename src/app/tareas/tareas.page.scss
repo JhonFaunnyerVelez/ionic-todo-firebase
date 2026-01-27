@@ -14,6 +14,31 @@ ion-header {
     ion-icon {
       color: white;
     }
+    
+    /* Fix for iOS menu button color - more aggressive */
+    ion-menu-button {
+      --color: white !important;
+      --background: transparent !important;
+      --background-focused: transparent !important;
+      --background-activated: transparent !important;
+      color: white !important;
+    }
+    
+    ion-buttons {
+      --color: white !important;
+    }
+    
+    /* iOS specific overrides */
+    &.ios {
+      ion-menu-button {
+        --ion-color-base: white !important;
+        color: white !important;
+      }
+      
+      ion-buttons {
+        --ion-color-base: white !important;
+      }
+    }
   }
 }
 
@@ -83,4 +108,46 @@ ion-list {
 .completed {
   text-decoration: line-through;
   opacity: 0.6;
+}
+
+/* Estilos para buscador más pequeño */
+ion-searchbar {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --placeholder-color: var(--ion-color-medium);
+  --placeholder-opacity: 0.7;
+  --icon-color: var(--ion-color-primary);
+  --border-radius: 8px;
+  --box-shadow: none;
+  --background: var(--ion-color-light);
+  height: 40px; /* Reducido altura */
+  font-size: 14px;
+}
+
+ion-searchbar .searchbar-input-container {
+  min-height: 40px; /* Reducido altura mínima */
+}
+
+ion-searchbar .searchbar-input {
+  font-size: 14px;
+  padding: 0 8px;
+}
+
+/* Global iOS menu button fix */
+@media (max-width: 768px) {
+  ion-header ion-toolbar ion-menu-button,
+  ion-header ion-toolbar ion-buttons ion-menu-button {
+    --ion-color-base: white !important;
+    color: white !important;
+    background: transparent !important;
+    -webkit-text-fill-color: white !important;
+  }
+  
+  /* Force iOS specific styles */
+  .ios ion-header ion-toolbar ion-menu-button,
+  .ios ion-header ion-toolbar ion-buttons ion-menu-button {
+    color: white !important;
+    --color: white !important;
+    --ion-color-base: white !important;
+  }
 }

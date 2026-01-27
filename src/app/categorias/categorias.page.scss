@@ -14,6 +14,31 @@ ion-header {
     ion-icon {
       color: white;
     }
+    
+    /* Fix for iOS menu button color - more aggressive */
+    ion-menu-button {
+      --color: white !important;
+      --background: transparent !important;
+      --background-focused: transparent !important;
+      --background-activated: transparent !important;
+      color: white !important;
+    }
+    
+    ion-buttons {
+      --color: white !important;
+    }
+    
+    /* iOS specific overrides */
+    &.ios {
+      ion-menu-button {
+        --ion-color-base: white !important;
+        color: white !important;
+      }
+      
+      ion-buttons {
+        --ion-color-base: white !important;
+      }
+    }
   }
 }
 
@@ -42,4 +67,23 @@ ion-card {
 
 ion-card-title {
   font-weight: 600;
+}
+
+/* Global iOS menu button fix */
+@media (max-width: 768px) {
+  ion-header ion-toolbar ion-menu-button,
+  ion-header ion-toolbar ion-buttons ion-menu-button {
+    --ion-color-base: white !important;
+    color: white !important;
+    background: transparent !important;
+    -webkit-text-fill-color: white !important;
+  }
+  
+  /* Force iOS specific styles */
+  .ios ion-header ion-toolbar ion-menu-button,
+  .ios ion-header ion-toolbar ion-buttons ion-menu-button {
+    color: white !important;
+    --color: white !important;
+    --ion-color-base: white !important;
+  }
 }

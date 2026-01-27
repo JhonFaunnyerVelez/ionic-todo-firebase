@@ -12,6 +12,9 @@ export class CategoriaService {
 
   constructor() {}
 
+  /**
+   * Obtiene todas las categorías
+   */
   getCategorias(): Observable<Categoria[]> {
     return new Observable(observer => {
       const unsubscribe = onSnapshot(this.categoriasCollection, (snapshot) => {
@@ -29,6 +32,9 @@ export class CategoriaService {
     });
   }
 
+  /**
+   * Crea una nueva categoría
+   */
   async createCategoria(categoria: Omit<Categoria, 'id'>): Promise<Categoria> {
     try {
       const docRef = await addDoc(this.categoriasCollection, categoria);
@@ -42,6 +48,9 @@ export class CategoriaService {
     }
   }
 
+  /**
+   * Actualiza una categoría existente
+   */
   async updateCategoria(id: string, categoria: Partial<Categoria>): Promise<void> {
     try {
       const docRef = doc(firestore, 'categorias', id);
@@ -52,6 +61,9 @@ export class CategoriaService {
     }
   }
 
+  /**
+   * Elimina una categoría existente
+   */
   async deleteCategoria(id: string): Promise<void> {
     try {
       const docRef = doc(firestore, 'categorias', id);

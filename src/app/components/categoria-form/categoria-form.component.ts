@@ -41,8 +41,16 @@ import { addIcons } from 'ionicons';
   ]
 })
 export class CategoriaFormComponent {
+
+  /**
+   * Input para recibir la categoria
+   */
   @Input() categoria: Partial<Categoria> = {};
   @Input() isModal = false;
+
+  /**
+   * Output para emitir el evento de guardar
+   */
   @Output() save = new EventEmitter<Partial<Categoria>>();
   @Output() cancel = new EventEmitter<void>();
 
@@ -62,6 +70,10 @@ export class CategoriaFormComponent {
     }
   }
 
+
+  /**
+   * Metodo para guardar la categoria
+   */
   onSave() {
     if (!this.nombre.trim()) {
       return;

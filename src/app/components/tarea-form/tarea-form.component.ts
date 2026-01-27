@@ -14,7 +14,7 @@ import {
   IonIcon,
   IonSelect,
   IonSelectOption,
-  IonCheckbox,
+  IonToggle,
   ModalController
 } from '@ionic/angular/standalone';
 import { closeOutline } from 'ionicons/icons';
@@ -42,13 +42,21 @@ import { Categoria } from 'src/app/core/models/categoria.model';
     IonIcon,
     IonSelect,
     IonSelectOption,
-    IonCheckbox
+    IonToggle
   ]
 })
 export class TareaFormComponent {
+
+  /**
+   * Input para recibir la tarea
+   */
   @Input() tarea: Partial<Tarea> = {};
   @Input() categorias: Categoria[] = [];
   @Input() isModal = false;
+
+  /**
+   * Output para emitir el evento de guardar
+   */
   @Output() save = new EventEmitter<Partial<Tarea>>();
   @Output() cancel = new EventEmitter<void>();
 
@@ -70,6 +78,9 @@ export class TareaFormComponent {
     }
   }
 
+  /**
+   * Metodo para guardar la tarea
+   */
   onSave() {
     if (!this.descripcion.trim() || !this.keyCategoriaID) {
       return;
@@ -78,12 +89,19 @@ export class TareaFormComponent {
     const tareaData: Partial<Tarea> = {
       descripcion: this.descripcion.trim(),
       keyCategoriaID: this.keyCategoriaID,
-      completa: this.completa || false // Asegurar que sea false por defecto
+      completa: this.completa // true si está marcado, false si está desmarcado
     };
+
+    console.log('Toggle está marcado:', this.completa);
+    console.log('Estado: ', this.completa ? 'COMPLETADA' : 'PENDIENTE');
+    console.log('Tarea data completa:', tareaData);
 
     this.modalController.dismiss(tareaData, 'save');
   }
 
+  /**
+   * Metodo para cancelar la tarea
+   */
   onCancel() {
     this.modalController.dismiss(null, 'cancel');
   }

@@ -75,6 +75,9 @@ export class CategoriasPage implements OnInit, OnDestroy {
     }
   }
 
+  /***
+   * Metodo para eliminar una categoria
+   */
   async deleteCategoria(id: string) {
   // Verificar si la categoría está siendo usada en tareas
   const tareasUsandoCategoria = this.tareas.filter(tarea => tarea.keyCategoriaID === id);
@@ -121,6 +124,10 @@ export class CategoriasPage implements OnInit, OnDestroy {
   await alert.present();
 }
 
+/**
+ * Metodo para abrir el modal de la categoria
+ * @param categoria 
+ */
   async openCategoriaForm(categoria?: Categoria) {
     const modal = await this.modalController.create({
       component: CategoriaFormComponent,
@@ -147,6 +154,10 @@ export class CategoriasPage implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Metodo para mostrar el action sheet de la categoria
+   * @param categoria 
+   */
   async presentActionSheet(categoria: Categoria) {
     const actionSheet = await this.actionSheetController.create({
       header: categoria.nombre,
