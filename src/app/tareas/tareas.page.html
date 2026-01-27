@@ -12,24 +12,13 @@
   @if (isLoading) {
     <ion-spinner></ion-spinner>
   } @else {
-    <ion-card>
-      <ion-card-content>
-        <div class="stats-container">
-          <div class="stat-item">
-            <h2>{{ tareasPendientes }}</h2>
-            <p>Pendientes</p>
-          </div>
-          <div class="stat-item">
-            <h2>{{ tareasCompletadas }}</h2>
-            <p>Completadas</p>
-          </div>
-          <div class="stat-item">
-            <h2>{{ tareas.length }}</h2>
-            <p>Total</p>
-          </div>
-        </div>
-      </ion-card-content>
-    </ion-card>
+
+    <!-- Contador de tareas -->
+    <app-task-counter 
+      [pendientes]="tareasPendientes" 
+      [completadas]="tareasCompletadas" 
+      [total]="tareas.length">
+    </app-task-counter>
 
     <!-- Buscador de tareas -->
     <ion-card>

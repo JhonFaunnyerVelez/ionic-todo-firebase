@@ -7,6 +7,7 @@ import { CategoriaService } from '../services/categoria.service';
 import { Tarea } from '../core/models/tarea.model';
 import { Categoria } from '../core/models/categoria.model';
 import { TareaFormComponent } from '../components/tarea-form/tarea-form.component';
+import { TaskCounterComponent } from '../components/task-counter/task-counter.component';
 import { addIcons } from 'ionicons';
 import { Subscription } from 'rxjs';
 
@@ -15,7 +16,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './tareas.page.html',
   styleUrls: ['./tareas.page.scss'],
   standalone: true,
-  imports: [FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon, IonItemSliding, IonItemOptions, IonItemOption, IonButtons, IonMenuButton, IonFab, IonFabButton, IonSpinner, IonAvatar, IonToggle, IonInfiniteScroll, IonInfiniteScrollContent, IonCard, IonCardContent, IonSearchbar]
+  imports: [FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon, IonItemSliding, IonItemOptions, IonItemOption, IonButtons, IonMenuButton, IonFab, IonFabButton, IonSpinner, IonAvatar, IonToggle, IonInfiniteScroll, IonInfiniteScrollContent, IonCard, IonCardContent, IonSearchbar, TaskCounterComponent]
 })
 export class TareasPage implements OnInit, OnDestroy {
   tareas: Tarea[] = []; 
