@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonIcon, IonButtons, IonMenuButton } from '@ionic/angular/standalone';
-import { addOutline } from 'ionicons/icons';
+import { addCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-categorias',
