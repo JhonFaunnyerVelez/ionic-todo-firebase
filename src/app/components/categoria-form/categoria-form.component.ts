@@ -84,6 +84,10 @@ export class CategoriaFormComponent {
       descripcion: this.descripcion.trim()
     };
 
+    if (this.categoria?.id) {
+      categoriaData.id = this.categoria.id;
+    }
+
     this.modalController.dismiss(categoriaData, 'save');
   }
 

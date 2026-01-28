@@ -38,6 +38,9 @@ export class CategoriaService {
   async createCategoria(categoria: Omit<Categoria, 'id'>): Promise<Categoria> {
     try {
       const docRef = await addDoc(this.categoriasCollection, categoria);
+      
+      await updateDoc(docRef, { id: docRef.id });
+      
       return {
         id: docRef.id,
         ...categoria

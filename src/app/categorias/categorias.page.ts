@@ -144,7 +144,9 @@ export class CategoriasPage implements OnInit, OnDestroy {
     if (role === 'save' && data) {
       try {
         if (categoria?.id) {
-          await this.categoriaService.updateCategoria(categoria.id, data);
+          const updateData = { ...data };
+          delete updateData.id; 
+          await this.categoriaService.updateCategoria(categoria.id, updateData);
         } else {
           await this.categoriaService.createCategoria(data);
         }
