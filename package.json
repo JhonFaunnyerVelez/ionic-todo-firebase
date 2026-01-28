@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-"android": "cd \"platforms\\android\" && gradle clean assembleDebug"
+    "android": "cd \"platforms\\android\" && gradle clean assembleDebug"
   },
   "private": true,
   "dependencies": {
@@ -23,11 +23,6 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@capacitor/app": "8.0.0",
-    "@capacitor/core": "8.0.2",
-    "@capacitor/haptics": "8.0.0",
-    "@capacitor/keyboard": "8.0.0",
-    "@capacitor/status-bar": "8.0.0",
     "@ionic/angular": "^8.0.0",
     "firebase": "^12.8.0",
     "ionicons": "^7.0.0",
@@ -45,7 +40,6 @@
     "@angular/cli": "^20.0.0",
     "@angular/compiler-cli": "^20.0.0",
     "@angular/language-service": "^20.0.0",
-    "@capacitor/cli": "8.0.2",
     "@ionic/angular-toolkit": "^12.0.0",
     "@ionic/cordova-builders": "^12.3.0",
     "@types/jasmine": "~5.1.0",
@@ -53,6 +47,7 @@
     "@typescript-eslint/parser": "^8.18.0",
     "cordova": "^13.0.0",
     "cordova-android": "^14.0.1",
+    "cordova-ios": "^8.0.0",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^5.0.0",
@@ -81,7 +76,8 @@
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

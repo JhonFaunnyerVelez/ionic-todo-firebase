@@ -1,7 +1,6 @@
 {
   "name": "ionic-todo-firebase",
   "integrations": {
-    "capacitor": {},
     "cordova": {}
   },
   "type": "angular-standalone"
