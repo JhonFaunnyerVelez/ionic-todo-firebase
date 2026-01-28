@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon, IonItemSliding, IonItemOptions, IonItemOption, IonButtons, IonMenuButton, IonFab, IonFabButton, IonSpinner, ModalController, ActionSheetController, IonAvatar, IonToggle, AlertController, IonInfiniteScroll, IonInfiniteScrollContent, IonCard, IonCardContent, IonSearchbar } from '@ionic/angular/standalone';
-import { addCircle, trash, create, closeOutline, pencil, checkmark, chevronForward, checkmarkCircle, ellipse } from 'ionicons/icons';
+import { addCircle, trash, create, closeOutline, pencil, checkmark, chevronForward, checkmarkCircle, ellipse, calendarOutline, pricetagOutline } from 'ionicons/icons';
 import { TareaService } from '../services/tarea.service';
 import { CategoriaService } from '../services/categoria.service';
 import { Tarea } from '../core/models/tarea.model';
@@ -53,7 +53,9 @@ export class TareasPage implements OnInit, OnDestroy {
       'checkmark': checkmark,
       'chevron-forward': chevronForward,
       'checkmark-circle': checkmarkCircle,
-      'ellipse': ellipse
+      'ellipse': ellipse,
+      'calendar-outline': calendarOutline,
+      'pricetag-outline': pricetagOutline
     });
   }
 
@@ -289,18 +291,27 @@ export class TareasPage implements OnInit, OnDestroy {
     const date = new Date(fecha);
     const hoy = new Date();
     const diffMs = hoy.getTime() - date.getTime();
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     
-    if (diffDays === 0) {
-      return 'Hoy';
-    } else if (diffDays === 1) {
+    // Si fue creado hoy hace menos de 1 hora
+    if (diffMinutes < 60 && diffDays === 0) {
+      if (diffMinutes === 0) {
+        return 'Ahora';
+      }
+      return `Hace ${diffMinutes} minuto${diffMinutes > 1 ? 's' : ''}`;
+    }
+    // Si fue creado hoy hace más de 1 hora
+    else if (diffHours < 24 && diffDays === 0) {
+      return `Hace ${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+    }
+    // Si fue creado ayer
+    else if (diffDays === 1) {
       return 'Ayer';
-    } else if (diffDays < 7) {
-      return `Hace ${diffDays} días`;
-    } else if (diffDays < 30) {
-      const semanas = Math.floor(diffDays / 7);
-      return `Hace ${semanas} semana${semanas > 1 ? 's' : ''}`;
-    } else {
+    } 
+    // Si es más viejo que ayer, mostrar la fecha
+    else {
       return date.toLocaleDateString('es-ES', { 
         day: 'numeric', 
         month: 'short', 

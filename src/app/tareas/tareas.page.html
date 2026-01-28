@@ -44,8 +44,14 @@
           </ion-avatar>
           <ion-label>
             <h2 [class.completed]="tarea.completa">{{ tarea.descripcion }}</h2>
-            <p>{{ getNombreCategoria(tarea.keyCategoriaID) }}</p>
-            <p>{{ formatDate(tarea.fechaCreacion) }}</p>
+            <p>
+              <ion-icon name="pricetag-outline" size="small" style="margin-right: 4px;"></ion-icon>
+              {{ getNombreCategoria(tarea.keyCategoriaID) }}
+            </p>
+            <p>
+              <ion-icon name="calendar-outline" size="small" style="margin-right: 4px;"></ion-icon>
+              {{ formatDate(tarea.fechaCreacion) }}
+            </p>
           </ion-label>
           <ion-toggle slot="end" [ngModel]="tarea.completa" (ionChange)="toggleTarea(tarea)" (click)="$event.stopPropagation()"></ion-toggle>
         </ion-item>
