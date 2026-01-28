@@ -67,6 +67,18 @@
             },
             "ci": {
               "progress": false
+            },
+
+            "cordova": {
+              "baseHref": "./",
+              "deployUrl": "./",
+              "outputHashing": "all"
+            },
+
+            "web": {
+              "baseHref": "/tareas/",
+              "deployUrl": "/tareas/",
+              "outputHashing": "all"
             }
           },
           "defaultConfiguration": "production"
@@ -83,6 +95,14 @@
             },
             "ci": {
               "progress": false
+            },
+
+            "cordova": {
+              "buildTarget": "app:build:cordova"
+            },
+
+            "web": {
+              "buildTarget": "app:build:web"
             }
           },
           "defaultConfiguration": "development"
@@ -91,14 +111,14 @@
         "ionic-cordova-build": {
           "builder": "@ionic/cordova-builders:cordova-build",
           "options": {
-            "browserTarget": "app:build"
+            "browserTarget": "app:build:cordova"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "browserTarget": "app:build:cordova"
             },
             "development": {
-              "browserTarget": "app:build:development"
+              "browserTarget": "app:build:cordova"
             }
           }
         },
@@ -106,16 +126,16 @@
         "ionic-cordova-serve": {
           "builder": "@ionic/cordova-builders:cordova-serve",
           "options": {
-            "browserTarget": "app:build",
+            "browserTarget": "app:build:cordova",
             "cordovaBuildTarget": "app:ionic-cordova-build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production",
+              "browserTarget": "app:build:cordova",
               "cordovaBuildTarget": "app:ionic-cordova-build:production"
             },
             "development": {
-              "browserTarget": "app:build:development",
+              "browserTarget": "app:build:cordova",
               "cordovaBuildTarget": "app:ionic-cordova-build:development"
             }
           }
@@ -175,7 +195,7 @@
       "styleext": "scss"
     },
     "@angular-eslint/schematics:application": {
-      "setParserOptionsProject": true
+      "setParserParserOptionsProject": true
     },
     "@angular-eslint/schematics:library": {
       "setParserOptionsProject": true

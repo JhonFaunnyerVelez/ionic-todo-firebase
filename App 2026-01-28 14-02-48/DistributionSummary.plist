@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>todoApp.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>0.0.1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>97F0D09FAD29FD7C6940A082635CB6A786F89BC4</string>
+				<key>dateExpires</key>
+				<string>28/01/27</string>
+				<key>type</key>
+				<string>Apple Development</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>GK9NP7G24S.io.ionic.jhon.todoapp</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>GK9NP7G24S</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>todoApp.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>a76d473f-dfb2-413b-a449-f548cfe05ec8</string>
+				<key>dateExpires</key>
+				<string>28/01/27</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: *</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>GK9NP7G24S</string>
+				<key>name</key>
+				<string>Jhon Faunnyer Velez Hernandez</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>0.0.1</string>
+		</dict>
+	</array>
+</dict>
+</plist>
