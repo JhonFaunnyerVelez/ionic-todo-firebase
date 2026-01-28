@@ -2,15 +2,28 @@
 
 Aplicación móvil híbrida para gestión de tareas y categorías con Firebase, desarrollada con Ionic y Angular.
 
-ionic cordova platform rm ios
-rm -rf plugins
+## Comandos de Desarrollo
+
+### Android
+```bash
+ionic cordova platform add android
+ionic cordova prepare android
+ionic cordova build android
+npm run android
+```
+
+### iOS
+```bash
 ionic cordova platform add ios
 ionic cordova prepare ios
 ionic cordova run ios
+```
 
-
+### Web
+```bash
 ng build --configuration web
 firebase deploy
+```
 
 
 ## 📱 Características
